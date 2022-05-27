@@ -19,6 +19,10 @@ class Program
     #[ORM\Column(type: 'text')]
     private $synopsys;
 
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +48,18 @@ class Program
     public function setSynopsys(string $synopsys): self
     {
         $this->synopsys = $synopsys;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
